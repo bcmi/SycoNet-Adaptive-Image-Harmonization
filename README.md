@@ -2,7 +2,9 @@
 
 We release the SycoNet inference code used in our paper "Deep Image Harmonization with Learnable Augmentation", ICCV2023. SycoNet can generate multiple plausible synthetic composite images based on a real image and a foreground mask, which is useful to construct pairs of synthetic composite images and real images for harmonization. 
 
-![SycoNet](figures/flowchart.jpg)
+<div align="center">
+	<img src="figures/flowchart..jpg" alt="SycoNet" width="800">
+</div>
 
 # Setup
 
@@ -34,9 +36,9 @@ Modify `CUDA_HOME` as your own path in `setup.sh`. You can refer to [this reposi
 
 Download pre-trained SycoNet `pretrained_net_Er.pth` and 3D LUTs `pretrained_net_LUTs.pth` from [Baidu Cloud](https://pan.baidu.com/s/1wIWxb37yIVccxB0kM-FnnQ) (access code:o4rt). Put them in the folder `checkpoints\syco`. 
 
-Modify `real` and `mask` in `demo_test.sh` as your own real image path and mask path. Modify  `augment_num` as your expected number of generated composite images. Then, run this command:
+Modify `real` and `mask` in `demo_test.sh` as your own real image path and foreground mask path respectively. Modify  `augment_num` as your expected number of generated composite images per pair of real image and foreground mask. Then, run the following command:
 ```
 sh demo_test.sh
 ```
-Our SycoNet could generate composite images for the input real image and mask in the folder `results_dir`.
+Our SycoNet could generate composite images for the input real image and foreground mask in the folder `results\syco\test_pretrained`.
 
