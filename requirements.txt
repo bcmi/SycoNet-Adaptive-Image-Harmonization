@@ -1,0 +1,2 @@
+opencv_python==4.1.1.26
+albumentations==0.5.2 --no-binary albumentations
