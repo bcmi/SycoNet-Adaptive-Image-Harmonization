@@ -1,6 +1,13 @@
 # SycoNet: Domain Adaptive Image Harmonization
 
-We release the SycoNet inference code used in our paper "Deep Image Harmonization with Learnable Augmentation", ICCV2023. SycoNet can generate multiple plausible synthetic composite images based on a real image and a foreground mask, which is useful to construct pairs of synthetic composite images and real images for harmonization. 
+This is the official repository for the following paper:
+
+> **Deep Image Harmonization with Learnable Augmentation**  [[arXiv]](https://arxiv.org/pdf/2308.00376.pdf)<br>
+>
+> Li Niu, Junyan Cao, Wenyan Cong, Liqing Zhang<br>
+> Accepted by **ICCV 2023**.
+> 
+SycoNet can generate multiple plausible synthetic composite images based on a real image and a foreground mask, which is useful to construct pairs of synthetic composite images and real images for harmonization. We release the SycoNet inference code. 
 
 <div align="center">
 	<img src="figures/flowchart..jpg" alt="SycoNet" width="800">
