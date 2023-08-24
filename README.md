@@ -41,7 +41,7 @@ Modify `CUDA_HOME` as your own path in `setup.sh`. You can refer to [this reposi
 
 # Inference
 
-Download SycoNet model `pretrained_net_Er.pth` and 3D LUTs `pretrained_net_LUTs.pth` pretrained on the whole [iHarmony4](https://github.com/bcmi/Image-Harmonization-Dataset-iHarmony4) training set from [Baidu Cloud](https://pan.baidu.com/s/1wIWxb37yIVccxB0kM-FnnQ) (access code:o4rt). Put them in the folder `checkpoints\syco`. 
+Download SycoNet model `pretrained_net_Er.pth` and 3D LUTs `pretrained_net_LUTs.pth` pretrained on the whole [iHarmony4](https://github.com/bcmi/Image-Harmonization-Dataset-iHarmony4) training set from [Baidu Cloud](https://pan.baidu.com/s/1wIWxb37yIVccxB0kM-FnnQ) (access code:o4rt) or [GoogleDrive](https://drive.google.com/drive/folders/12vtiUhrM_EKtVh1c2k-Tu5-MZg4AGqBZ?usp=sharing). Put them in the folder `checkpoints\syco`. 
 
 Modify `real` and `mask` in `demo_test.sh` as your own real image path and foreground mask path respectively. Modify  `augment_num` as your expected number of generated composite images per pair of real image and foreground mask. Then, run the following command:
 ```
