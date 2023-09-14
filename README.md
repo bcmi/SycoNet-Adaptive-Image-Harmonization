@@ -43,11 +43,24 @@ Modify `CUDA_HOME` as your own path in `setup.sh`. You can refer to [this reposi
 
 Download SycoNet model `pretrained_net_Er.pth` and 3D LUTs `pretrained_net_LUTs.pth` pretrained on the whole [iHarmony4](https://github.com/bcmi/Image-Harmonization-Dataset-iHarmony4) training set from [Baidu Cloud](https://pan.baidu.com/s/1wIWxb37yIVccxB0kM-FnnQ) (access code:o4rt) or [GoogleDrive](https://drive.google.com/drive/folders/12vtiUhrM_EKtVh1c2k-Tu5-MZg4AGqBZ?usp=sharing). Put them in the folder `checkpoints\syco`. 
 
+## Test on a single image
 Modify `real` and `mask` in `demo_test.sh` as your own real image path and foreground mask path respectively. Modify  `augment_num` as your expected number of generated composite images per pair of real image and foreground mask. Then, run the following command:
 ```
-sh demo_test.sh
+sh demo_test_single.sh
 ```
 Our SycoNet could generate composite images for the input real image and foreground mask in the folder `results\syco\test_pretrained`.
+
+## Test on iHarmony4 dataset
+
+
+Download [iHarmony4](https://github.com/bcmi/Image-Harmonization-Dataset-iHarmony4) and modify `dataset_root`, `dataset_name` in `demo_test_iHarmony4.sh` as your own dataset path. Then, run the following command:
+
+```
+sh demo_test_iHarmony4.sh
+```
+
+Our SycoNet could generate composite images for the input real images and foreground masks in the specified dataset in the folder `results\syco\test_pretrained`.
+
 
 # Other Resources
 
