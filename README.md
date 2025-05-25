@@ -49,7 +49,7 @@ Modify `CUDA_HOME` as your own path in `setup.sh`. You can refer to [this reposi
 
 # Inference
 
-Download SycoNet model `pretrained_net_Er.pth` and 3D LUTs `pretrained_net_LUTs.pth` from [Baidu Cloud](https://pan.baidu.com/s/1wIWxb37yIVccxB0kM-FnnQ) (access code:o4rt) or [GoogleDrive](https://drive.google.com/drive/folders/12vtiUhrM_EKtVh1c2k-Tu5-MZg4AGqBZ?usp=sharing). Put them in the folder `checkpoints\syco`. 
+Download SycoNet model `pretrained_net_Er.pth` and 3D LUTs `pretrained_net_LUTs.pth` from [Baidu Cloud](https://pan.baidu.com/s/1wIWxb37yIVccxB0kM-FnnQ) (access code:o4rt) or [Dropbox](https://www.dropbox.com/scl/fo/zo5bbzotkc70psg3dlzz9/AGG6z69_qaRC5N3MydjgjjY?rlkey=39l5uixbym7xhf5sp6tg9515c&st=3o5qatdh&dl=0). Put them in the folder `checkpoints\syco`. 
 
 ## Test on a single image
 Modify `real` and `mask` in `demo_test.sh` as your own real image path and foreground mask path respectively. Modify  `augment_num` as your expected number of generated composite images per pair of real image and foreground mask. Then, run the following command:
