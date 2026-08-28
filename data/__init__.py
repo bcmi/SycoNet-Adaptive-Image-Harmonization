@@ -7,12 +7,20 @@
     -- <__getitem__>:                   get a data point from data loader.
     -- <modify_commandline_options>:    (optionally) add dataset-specific options and set default options.
 
-Now you can use the dataset class by specifying flag '--dataset_mode dummy'.
+Now you can use the dataset class by specifying flag '--data_mode single' or '--data_mode multiple'.
 See our template dataset class 'template_dataset.py' for more details.
 """
 import importlib
 import torch.utils.data
 from data.base_dataset import BaseDataset
+
+
+DATASET_MODE_ALIASES = {
+    'single': 'custom',
+    'multiple': 'custom',
+    'custom': 'custom',
+    'iHarmony4': 'custom',
+}
 
 
 def find_dataset_using_name(dataset_name):
@@ -22,6 +30,7 @@ def find_dataset_using_name(dataset_name):
     be instantiated. It has to be a subclass of BaseDataset,
     and it is case-insensitive.
     """
+    dataset_name = DATASET_MODE_ALIASES.get(dataset_name, dataset_name)
     dataset_filename = "data." + dataset_name + "_dataset"
     datasetlib = importlib.import_module(dataset_filename)
 
@@ -65,18 +74,19 @@ class CustomDatasetDataLoader():
     def __init__(self, opt):
         """Initialize this class
 
-        Step 1: create a dataset instance given the name [dataset_mode]
+        Step 1: create a dataset instance given the name [data_mode]
         Step 2: create a multi-threaded data loader.
         """
         self.opt = opt
-        dataset_class = find_dataset_using_name(opt.dataset_mode)
+        data_mode = getattr(opt, 'data_mode', getattr(opt, 'dataset_mode', 'single'))
+        dataset_class = find_dataset_using_name(data_mode)
         self.dataset = dataset_class(opt)
         print("dataset [%s] was created" % type(self.dataset).__name__)
         self.dataloader = torch.utils.data.DataLoader(
             self.dataset,
             batch_size=opt.batch_size,
             shuffle=not opt.serial_batches,
-            drop_last=True,
+            drop_last=False,
             num_workers=int(opt.num_threads))
 
     def load_data(self):

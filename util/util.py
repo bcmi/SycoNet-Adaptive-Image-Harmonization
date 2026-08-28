@@ -16,16 +16,24 @@ def tensor2im(input_image, imtype=np.uint8):
 
     if not isinstance(input_image, np.ndarray):
         if isinstance(input_image, torch.Tensor):  # get the data from a variable
-            image_tensor = input_image.data
+            image_tensor = input_image.detach().cpu().float()
         else:
             return input_image
 
-        image_numpy = image_tensor[0].cpu().float().numpy()  # convert it into a numpy array
+        if image_tensor.dim() == 4:
+            if image_tensor.shape[0] == 1:
+                image_tensor = image_tensor[0]
+            else:
+                raise ValueError(f'Expected a single image tensor, got batch shape {tuple(image_tensor.shape)}. Please pass one image at a time.')
+        elif image_tensor.dim() != 3:
+            raise ValueError(f'Unsupported image tensor shape: {tuple(image_tensor.shape)}')
+
+        image_numpy = image_tensor.numpy()
         if image_numpy.shape[0] == 1:  # grayscale to RGB
             image_numpy = np.tile(image_numpy, (3, 1, 1))
 
         image_numpy = (np.transpose(image_numpy, (1, 2, 0))) * 255.0
-    
+
     else:  # if it is a numpy array, do nothing
         image_numpy = input_image
     image_numpy = np.clip(image_numpy, 0, 255)

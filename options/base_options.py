@@ -36,7 +36,8 @@ class BaseOptions():
         parser.add_argument('--netEr', type=str, default='lut_spacial', help='Encoder architecture. [lut_special]') #Joy
         parser.add_argument('--norm', type=str, default='batch', help='instance normalization or batch normalization [instance | batch | none]')
         # dataset parameters
-        parser.add_argument('--dataset_mode', type=str, default='ihd', help='load iHarmony4 dataset') #mia
+        parser.add_argument('--data_mode', dest='data_mode', type=str, default='single', help='dataset mode: single or multiple')
+        parser.add_argument('--dataset_mode', dest='data_mode', type=str, help=argparse.SUPPRESS)
         parser.add_argument('--serial_batches', action='store_true', help='if true, takes images in order to make batches, otherwise takes them randomly')
         parser.add_argument('--num_threads', default=4, type=int, help='# threads for loading data')
         parser.add_argument('--batch_size', type=int, default=1, help='input batch size')
@@ -74,12 +75,12 @@ class BaseOptions():
         opt, _ = parser.parse_known_args()  # parse again with new defaults
 
         # modify dataset-related parser options
-        if opt.dataset_mode is not None:
-            dataset_name = opt.dataset_mode
+        if opt.data_mode is not None:
+            dataset_name = opt.data_mode
             dataset_option_setter = data.get_option_setter(dataset_name)
             parser = dataset_option_setter(parser, self.isTrain)
         else:
-            dataset_name = 'ihd'
+            dataset_name = 'single'
             dataset_option_setter = data.get_option_setter(dataset_name)
             parser = dataset_option_setter(parser, self.isTrain)
 

@@ -4,15 +4,13 @@ python demo_test.py \
 --model laBaseLUTs \
 --netEr Syco \
 --epoch pretrained \
---dataset_mode iHarmony4 \
+--data_mode multiple \
 --gpu_ids 0 \
 --is_train 0 \
---preprocess resize \
---norm batch \
---nz 32 \
---dataset_root ./iHarmony4_dataset \
---dataset_name Hday2night \
---results_dir results \
+--real examples/real_images/ \
+--mask examples/masks/ \
+--batch_size 4 \
+--results_dir results_multiple \
 --augment_num 10 \
 --keep_res \
 --eval \
