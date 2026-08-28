@@ -6,7 +6,6 @@
           checkpoints_dir: checkpoints                   	[default: ./checkpoints]
                 crop_size: 256                           
                 data_mode: multiple                      	[default: single]
-          display_winsize: 256                           
                     epoch: pretrained                    	[default: latest]
                      eval: True                          	[default: False]
                   gpu_ids: 0                             
@@ -25,7 +24,6 @@
        new_dataset_option: 2.0                           
                   no_flip: False                         
                      norm: batch                         
-                    ntest: inf                           
                  num_test: 7404                          
               num_threads: 4                             
                       nwf: 256                           

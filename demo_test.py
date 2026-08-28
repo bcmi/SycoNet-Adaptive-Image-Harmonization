@@ -36,18 +36,20 @@ if __name__ == '__main__':
             model.set_input(data)  # unpack data from data loader
             model.test()           # run inference
             visuals = model.get_current_visuals()  # get image results
+            transfer_img = visuals.get('transfer_img_c', None)
+
+            if transfer_img is None:
+                raise ValueError("'transfer_img_c' not found in visuals.")
 
             for b in range(batch_size):
                 img_path = str(data['img_path'][b])
                 _, image_name = os.path.split(img_path)
                 image_name, _ = os.path.splitext(image_name)
 
-                for label, im_data in visuals.items():
-                    if label == 'transfer_img_c':
-                        batch_out = im_data[b]
-                        save_path = os.path.join(save_dir, image_name + '_' + str(j) + '.jpg')
-                        output_c = util.tensor2im(batch_out)
-                        util.save_image(output_c, save_path, aspect_ratio=opt.aspect_ratio)
+                batch_out = transfer_img[b]
+                save_path = os.path.join(save_dir, image_name + '_' + str(j) + '.jpg')
+                output_c = util.tensor2im(batch_out)
+                util.save_image(output_c, save_path, aspect_ratio=opt.aspect_ratio)
 
                 print(f'[{i * opt.batch_size + b}], {image_name}, z num: {j}')
 
