@@ -1,0 +1,41 @@
+----------------- Options ---------------
+                  LUT_num: 20                            
+             aspect_ratio: 1.0                           
+              augment_num: 10                            	[default: 5]
+               batch_size: 4                             	[default: 1]
+          checkpoints_dir: checkpoints                   	[default: ./checkpoints]
+                crop_size: 256                           
+                data_mode: multiple                      	[default: single]
+          display_winsize: 256                           
+                    epoch: pretrained                    	[default: latest]
+                     eval: True                          	[default: False]
+                  gpu_ids: 0                             
+                 input_nc: 4                             
+                  isTrain: False                         	[default: None]
+                 is_train: True                          
+                 keep_res: True                          	[default: False]
+                load_iter: 0                             	[default: 0]
+                load_size: 256                           
+                     mask: examples/masks/               	[default: ]
+         max_dataset_size: inf                           
+                    model: laBaseLUTs                    	[default: test]
+                     name: syco                          	[default: experiment_name]
+                      nef: 64                            
+                    netEr: Syco                          	[default: lut_spacial]
+       new_dataset_option: 2.0                           
+                  no_flip: False                         
+                     norm: batch                         
+                    ntest: inf                           
+                 num_test: 7404                          
+              num_threads: 4                             
+                      nwf: 256                           
+                       nz: 32                            
+                output_nc: 3                             
+                    phase: test                          
+               preprocess: resize                        
+                     real: examples/real_images/         	[default: ]
+              results_dir: results_multiple              	[default: ./results/]
+           serial_batches: False                         
+                   suffix:                               
+                  verbose: False                         
+----------------- End -------------------

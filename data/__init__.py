@@ -15,11 +15,10 @@ import torch.utils.data
 from data.base_dataset import BaseDataset
 
 
-DATASET_MODE_ALIASES = {
+DATASET_NAME_ALIASES = {
     'single': 'custom',
     'multiple': 'custom',
     'custom': 'custom',
-    'iHarmony4': 'custom',
 }
 
 
@@ -30,7 +29,7 @@ def find_dataset_using_name(dataset_name):
     be instantiated. It has to be a subclass of BaseDataset,
     and it is case-insensitive.
     """
-    dataset_name = DATASET_MODE_ALIASES.get(dataset_name, dataset_name)
+    dataset_name = DATASET_NAME_ALIASES.get(dataset_name, dataset_name)
     dataset_filename = "data." + dataset_name + "_dataset"
     datasetlib = importlib.import_module(dataset_filename)
 
@@ -78,8 +77,7 @@ class CustomDatasetDataLoader():
         Step 2: create a multi-threaded data loader.
         """
         self.opt = opt
-        data_mode = getattr(opt, 'data_mode', getattr(opt, 'dataset_mode', 'single'))
-        dataset_class = find_dataset_using_name(data_mode)
+        dataset_class = find_dataset_using_name(opt.data_mode)
         self.dataset = dataset_class(opt)
         print("dataset [%s] was created" % type(self.dataset).__name__)
         self.dataloader = torch.utils.data.DataLoader(

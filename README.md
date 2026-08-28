@@ -12,7 +12,7 @@ This is the official repository for the following paper:
 > Li Niu, Junyan Cao, Wenyan Cong, Liqing Zhang<br>
 > Accepted by **ICCV 2023**.
 > 
-SycoNet can generate multiple plausible synthetic composite images based on a real image and a foreground mask, which is useful to construct pairs of synthetic composite images and real images for harmonization. We release the SycoNet inference code and model. **The released model is first trained on [iHarmony4](https://github.com/bcmi/Image-Harmonization-Dataset-iHarmony4) and then finetuned on [ccHarmony](https://github.com/bcmi/Image-Harmonization-Dataset-ccHarmony), because ccHarmony can reflect the illumination variation more faithfully.** 
+SycoNet can generate multiple plausible synthetic composite images based on a real image and a foreground mask, which is useful to construct pairs of synthetic composite images and real images for harmonization. We release the SycoNet inference code and model.
 
 <div align="center">
 	<img src="figures/flowchart..jpg" alt="SycoNet" width="800">
@@ -77,7 +77,6 @@ Our SycoNet could generate composite images for the input real image and foregro
 
 # Other Resources
 
-+ [Image-Harmonization-Dataset-iHarmony4](https://github.com/bcmi/Image-Harmonization-Dataset-iHarmony4)
 + [Awesome-Image-Harmonization](https://github.com/bcmi/Awesome-Image-Harmonization)
 + [Awesome-Image-Composition](https://github.com/bcmi/Awesome-Object-Insertion)
 

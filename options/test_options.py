@@ -15,7 +15,7 @@ class TestOptions(BaseOptions):
         parser.add_argument('--phase', type=str, default='test', help='train, val, test, etc')
         # Dropout and Batchnorm has different behavioir during training and test.
         parser.add_argument('--eval', action='store_true', help='use eval mode during test time.')
-        parser.add_argument('--num_test', type=int, default=7404, help='how many test images to run, for iHarmony4, the number is 7404') #mia
+        parser.add_argument('--num_test', type=int, default=7404, help='how many test images to run.')
         parser.add_argument('--augment_num', type=int, default=5, help='how many augmented reults to generate for each real image.')
         parser.add_argument('--keep_res', action='store_true', help='keep the input\'s resolution for augmented output.')
         parser.add_argument('--real', type=str, default='', help='the real image for learnable augmentation.')

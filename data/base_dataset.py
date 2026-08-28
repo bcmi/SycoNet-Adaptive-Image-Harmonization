@@ -28,7 +28,7 @@ class BaseDataset(data.Dataset, ABC):
             opt (Option class)-- stores all the experiment flags; needs to be a subclass of BaseOptions
         """
         self.opt = opt
-        self.root = opt.dataset_root #mia
+        self.root = getattr(opt, 'dataset_root', '')
 
     @staticmethod
     def modify_commandline_options(parser, is_train):

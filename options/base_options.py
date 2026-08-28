@@ -20,8 +20,6 @@ class BaseOptions():
     def initialize(self, parser):
         """Define the common options that are used in both training and test."""
         # basic parameters
-        parser.add_argument('--dataset_root',type=str, default='/data/caojunyan/datasets/IHD/', help='path to iHarmony4 dataset') #mia
-        parser.add_argument('--dataset_name',type=str, default='', help='which sub-dataset to load [Hday2night | HVIDIT]') #mia
         parser.add_argument('--name', type=str, default='experiment_name', help='name of the experiment. It decides where to store samples and models')
         parser.add_argument('--gpu_ids', type=str, default='0', help='gpu ids: e.g. 0  0,1,2, 0,2. use -1 for CPU')
         parser.add_argument('--checkpoints_dir', type=str, default='./checkpoints', help='models are saved here')
@@ -37,7 +35,6 @@ class BaseOptions():
         parser.add_argument('--norm', type=str, default='batch', help='instance normalization or batch normalization [instance | batch | none]')
         # dataset parameters
         parser.add_argument('--data_mode', dest='data_mode', type=str, default='single', help='dataset mode: single or multiple')
-        parser.add_argument('--dataset_mode', dest='data_mode', type=str, help=argparse.SUPPRESS)
         parser.add_argument('--serial_batches', action='store_true', help='if true, takes images in order to make batches, otherwise takes them randomly')
         parser.add_argument('--num_threads', default=4, type=int, help='# threads for loading data')
         parser.add_argument('--batch_size', type=int, default=1, help='input batch size')

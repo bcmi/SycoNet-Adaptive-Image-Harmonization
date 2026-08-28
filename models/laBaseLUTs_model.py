@@ -49,23 +49,34 @@ class LABASELUTSModel(BaseModel):
    
 
     def generator_eval(self, pred, img, mask, LUTs):
+        if pred.dim() == 4:
+            pred = pred.reshape(pred.shape[0], self.LUT_num)
+        elif pred.dim() == 3:
+            pred = pred.reshape(1, self.LUT_num)
 
-        pred = pred.squeeze()
+        if img.dim() == 3:
+            img = img.unsqueeze(0)
+        if mask.dim() == 3:
+            mask = mask.unsqueeze(1)
 
         for ii in range(self.LUT_num):
             self.baseLUTs[ii].eval()
 
-        LUT = pred[0] * self.baseLUTs[0].LUT
-        for idx in range(1, self.LUT_num):
-            LUT += pred[idx] * self.baseLUTs[idx].LUT
+        outputs = []
+        for b in range(pred.shape[0]):
+            coeffs = pred[b]
+            LUT = coeffs[0] * self.baseLUTs[0].LUT
+            for idx in range(1, self.LUT_num):
+                LUT += coeffs[idx] * self.baseLUTs[idx].LUT
 
+            img_b = img[b].unsqueeze(0)
+            mask_b = mask[b].unsqueeze(0)
+            _, combine_A = self.trilinear_(LUT.unsqueeze(0), img_b)
+            combine_A = combine_A * mask_b + img_b * (1 - mask_b)
+            combine_A = torch.clamp(combine_A, 0, 1)
+            outputs.append(combine_A.squeeze(0))
 
-        _, combine_A = self.trilinear_(LUT,img)
-
-        combine_A = combine_A * mask + img * (1 - mask)
-        combine_A = torch.clamp(combine_A, 0, 1)
-
-        return combine_A
+        return torch.stack(outputs) if len(outputs) > 1 else outputs[0].unsqueeze(0)
 
 
     def forward(self):
